@@ -1,0 +1,55 @@
+//1.1
+void main() {
+  
+  String nome = "João";
+  String sobrenome = "da Silva";
+  int idade = 24;
+  String endereco = "Rua ilusoria, 90";
+   
+  print("Nome: $nome\n"
+        "Sobrenome: $sobrenome\n"
+        "Idade: $idade anos\n"
+        "Endereço: $endereco");
+ 
+}
+//1.2
+void main() {
+  
+  double valor = 24;
+   
+  print(valor*4);
+ 
+}
+//1.3
+void main() {
+   //base maior + base menor) * altura) /2;
+  
+  double baseMaior = 20;
+  double baseMenor = 10;
+  double altura = 5;
+   
+  print(((baseMaior+baseMenor)*altura)/2);
+ 
+}
+//1.4
+void main() {
+   //base maior + base menor) * altura) /2;
+  
+  double lado = 10; 
+  print(lado*lado);
+ 
+}
+//1.5
+void main() {
+  String nome1 = "Maria";
+  String nome2 = "Eduarda";
+  
+  if(nome1==nome2)
+    print("são iguais");
+  else
+    print("não são guais");
+      
+  
+ 
+}
+

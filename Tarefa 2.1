@@ -1,0 +1,28 @@
+void main() {
+/*1. Escreva um procedimento que recebe as 3 notas de um aluno por parâmetro e uma letra. Se a letra for A o procedimento calcula a média aritmética das notas do aluno, se for B, a sua média ponderada (pesos: 5, 3 e 2) e se for C, a sua média harmônica. A média calculada também deve retornar por parâmetro.*/
+  double nota1,nota2,nota3;
+  String letra;
+  letra="C";
+  nota1 =7;
+  nota2=8;
+  nota3=5;
+  print(procedimento(letra,nota1,nota2,nota3));
+  
+ 
+}
+double procedimento(String o,double n1,double n2,double n3){
+  switch (o){
+    case 'A':
+      return (n1+n2+n3)/3;
+      break;
+    case 'B':
+      return (n1*5+n2*3+n3*2)/10;
+      break;
+    case 'C':
+      return 3/((1/n1)+(1/n2)+(1/n3));
+      break;
+    default:
+      return -1;
+  }
+  
+}

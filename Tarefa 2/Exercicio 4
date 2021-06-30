@@ -1,0 +1,17 @@
+void main() {
+/*4. Faça uma função que recebe um valor inteiro e verifica se o valor é positivo ou negativo. A função deve retornar um valor booleano*/
+  int numero=-3;
+  if(polaridade(numero))
+    print("É positivo");
+  else
+    print("É negativo");
+  
+}
+
+  
+bool polaridade(int n){
+  if(n>=0)
+    return true;
+  else
+    return false;
+  }

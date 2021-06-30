@@ -1,0 +1,11 @@
+void main() {
+/*6. Escreva uma função que recebe, por parâmetro, receba 2 valores inteiros e positivo e retorna o somatório desse valor*/
+  
+  print(somatorio(11,15));
+  
+}
+
+  
+double somatorio(double n1,double n2){
+  return n1+n2;
+  }

@@ -1,0 +1,32 @@
+void main() {
+/*12. Crie uma calculadora utilizando funções (livre).*/
+    calculadora(1,2,'*');
+}
+void calculadora(double n1,double n2,String op){
+  switch(op){
+    case '+':
+      print(soma(n1,n2));
+      break;
+    case '-':
+      print(subtracao(n1,n2));
+      break;
+    case '*':
+      print(multiplicacao(n1,n2));
+      break;
+    case '/':
+      print(divisao(n1,n2));
+      break;
+  }
+}
+double soma(double n1, double n2){
+  return n1+n2;
+}
+double subtracao(double n1, double n2){
+  return n1-n2;
+}
+double multiplicacao(double n1, double n2){
+  return n1*n2;
+}
+double divisao(double n1, double n2){
+  return n1/n2;
+}

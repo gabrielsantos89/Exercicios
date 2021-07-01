@@ -1,0 +1,12 @@
+void main() {
+/*9. Faça uma função que recebe um valor inteiro e verifica se o valor é par. A função deve retornar 1 se o número for par e 0 se for ímpar*/
+  
+  print(ePar(7));
+  
+}
+int ePar(int n){
+  if(n%2==0)
+    return 1;
+  else
+    return 0;
+}

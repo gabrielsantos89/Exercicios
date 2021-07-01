@@ -1,0 +1,20 @@
+void main() {
+/*7. Faça uma função que recebe a média final de um aluno por parãmetro e retorna o seu conceito, conforme a tabela abaixo (imagem1);*/
+  
+  print(conceito(4));
+  
+}
+
+  
+String conceito(double nota){
+  if(nota>=0 && nota<=4.9){
+    return "D";}
+  if(nota>=5 && nota<=6.9){
+    return "C";}
+  if(nota>=7 && nota<=8.9){
+     return "B";}
+  if(nota>=9 && nota<=10){
+     return "A";}
+  else{
+    return "Media invalida";}
+  }

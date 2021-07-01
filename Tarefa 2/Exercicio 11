@@ -1,9 +1,12 @@
 void main() {
 /*11. Faça um programa que leia dois valores e imprima:
   a) se o primeiro valor for menor que o segundo, a lista de valores do primeiro até
-o segundo;*/
+o segundo;
+b) se o primeiro valor for maior que o segundo a lista de valores do segundo até
+o primeiro em ordem decrescente;
+  c) se ambos forem iguais a mensagem "valores iguais".*/
   
-  imprimir(6,8);
+  imprimir(8,6);
   
 }
 void imprimir(int n1,int n2){
@@ -11,10 +14,15 @@ void imprimir(int n1,int n2){
     for(int i=n1;i<=n2;i++){
       print(i);
     }
-  }
-   else{
+  }else{
+    if(n1>n2){
+      for(int i=n1;i>=n2;i--){
+      print(i);
+    }
+    }
+    else{
      if(n1==n2){
        print("Valores Iguais");}
   }
-  
-}
+    }
+  }

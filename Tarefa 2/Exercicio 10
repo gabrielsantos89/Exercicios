@@ -1,0 +1,24 @@
+void main() {
+/*10. Fazer um programa que receba 2 números e informe:
+  a) A soma dos números;
+  b) O produto do primeiro número pelo quadrado do segundo;
+  c) O quadrado do primeiro número;
+  d) O triplo do dobro da soma dos dois números
+  e) A metade do triplo do dobro da soma dos dois números
+  f) O módulo do primeiro número.*/
+  
+  procedimento(7,8);
+  
+}
+void procedimento(int n1, int n2){
+  print(n1+n2);
+  print(n1*(n2*n2));
+  print(n1*n1);
+  print(((n1+n2)*2)*3);
+  print((((n1+n2)*2)*3)/2);
+  if(n1>0)
+    print(n1);
+  else
+    print(n1*-1);
+  
+}

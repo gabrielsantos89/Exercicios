@@ -18,9 +18,6 @@ class _LayoutCardState extends State<LayoutCard> {
         slivers: <Widget>[
           SliverList(delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                if(index>2){
-                  return null;
-                }
                 return Container(
                   alignment: Alignment.center,
                   child: Column(

@@ -13,37 +13,46 @@ class _FormularioState extends State<Formulario> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro de Aplicativos"),
+        title: Text("Flutter Form"),
       ),
       body: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              ListTile(
-                title: Text("Android"),
-                leading: Radio(
-                  value: "Android",
-                  groupValue: _value,
-                  onChanged: (value){
-                    setState(() {
-                      _value = value.toString();
-                    });
-                  },
-                ),
-              ),
-              ListTile(
-                title: Text("IOS"),
-                leading: Radio(
-                  value: "IOS",
-                  groupValue: _value,
-                  onChanged: (value){
-                    setState(() {
-                      _value = value.toString();
-                    });
-                  },
-                ),
-              ),
-            ],
+          Text("Radio Button"),
+          ListTile(
+            title: Text("Radio 1"),
+            leading: Radio(
+              value: "radio1",
+              groupValue: _value,
+              onChanged: (value){
+                setState(() {
+                  _value = value.toString();
+                });
+              },
+            ),
+          ),
+          ListTile(
+            title: Text("Radio 2"),
+            leading: Radio(
+              value: "radio2",
+              groupValue: _value,
+              onChanged: (value){
+                setState(() {
+                  _value = value.toString();
+                });
+              },
+            ),
+          ),
+          ListTile(
+            title: Text("Radio 3"),
+            leading: Radio(
+              value: "radio3",
+              groupValue: _value,
+              onChanged: (value){
+                setState(() {
+                  _value = value.toString();
+                });
+              },
+            ),
           ),
           TextField(
             decoration: InputDecoration(labelText: "Titulo"),

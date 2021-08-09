@@ -8,9 +8,13 @@ class Formulario extends StatefulWidget {
 }
 
 class _FormularioState extends State<Formulario> {
-  String _value = "Android";
+  String _value = "radio1";
+  bool isChecked1 = false;
+  bool isChecked2 = false;
+  bool isChecked3 = false;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter Form"),
@@ -54,6 +58,31 @@ class _FormularioState extends State<Formulario> {
               },
             ),
           ),
+          CheckboxListTile(
+            activeColor: Colors.amber,
+            checkColor: Colors.black,
+            selected: isChecked1,
+            title: Text("Exemplo Checkbox 1"),
+              value: isChecked1,
+              onChanged: (bool? value){
+                setState(() {
+                  isChecked1 = value!;
+                });
+          }),
+          CheckboxListTile(
+              title: Text("Exemplo Checkbox 2"),
+              value: isChecked2, onChanged: (bool? value){
+            setState(() {
+              isChecked2 = value!;
+            });
+          }),
+          CheckboxListTile(
+              title: Text("Exemplo Checkbox 3"),
+              value: isChecked3, onChanged: (bool? value){
+            setState(() {
+              isChecked3 = value!;
+            });
+          }),
           TextField(
             decoration: InputDecoration(labelText: "Titulo"),
             keyboardType: TextInputType.text,

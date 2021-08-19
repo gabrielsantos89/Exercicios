@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sheets/pets.dart';
 import 'package:google_sheets/pets_sheets_api.dart';
-import 'main.dart';
-import 'package:google_sheets/main.dart';
-import 'buttonwidget.dart';
+import 'user_form_widget.dart';
 
 class CreateSheetsPage extends StatelessWidget {
   const CreateSheetsPage({Key? key}) : super(key: key);
@@ -17,18 +15,22 @@ class CreateSheetsPage extends StatelessWidget {
     body: Container(
       alignment: Alignment.center,
       padding: EdgeInsets.all(32),
-      child: ButtonWidget(
-        text: 'Save',
-        onClicked: () async {
-          final user = {
-            PetsFields.id: 1,
-            PetsFields.name: 'Paul',
-            PetsFields.email: 'paul@gmail.com',
-            PetsFields.isBeginner: true,
-    };
-          await PetsSheetsAPi.insert([user]);
+      child: UserFormWidget(
+        onSavedUser: (user) async {
+          await PetsSheetsAPi.insert([user.toJson()]);
     },
       ),
     ),
   );
+  Future insertUsers() async {
+    final users = [
+      User(id: 1, name: 'John', email: 'john@gmail.com', isBeginner: false),
+      User(id: 2, name: 'Emma', email: 'emma@gmail.com', isBeginner: true),
+      User(id: 3, name: 'Paul', email: 'paul@gmail.com', isBeginner: true),
+      User(id: 4, name: 'Dean', email: 'dean@gmail.com', isBeginner: false),
+      User(id: 5, name: 'Lisa', email: 'lisa@gmail.com', isBeginner: false),
+    ];
+    final jsonUsers = users.map((user) => user.toJson()).toList();
+    await PetsSheetsAPi.insert(jsonUsers);
+  }
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'pets.dart';
+import 'user.dart';
 import 'buttonwidget.dart';
 
 class UserFormWidget extends StatefulWidget {
+  final User? user;
   final ValueChanged<User> onSavedUser;
 
   const UserFormWidget({
     Key? key,
+    this.user,
     required this.onSavedUser,
   }) : super(key: key);
 
@@ -26,10 +28,22 @@ class _UserFormWidgetState extends State<UserFormWidget> {
     initUser();
   }
 
+  @override
+  void didUpdateWidget(covariant UserFormWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    initUser();
+  }
+
   void initUser(){
-    controllerName = TextEditingController();
-    controllerEmail= TextEditingController();
-    this.isBeginner = true;
+    final name = widget.user == null ? '' : widget.user!.name;
+    final email = widget.user == null ? '' : widget.user!.email;
+    final isBeginner = widget.user == null ? true : widget.user!.isBeginner;
+    setState(() {
+      controllerName = TextEditingController(text: name);
+      controllerEmail= TextEditingController(text: email);
+      this.isBeginner = isBeginner;
+    });
   }
   @override
   Widget build(BuildContext context) => Form(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_sheets/pets.dart';
-import 'package:google_sheets/pets_sheets_api.dart';
+import 'package:google_sheets/user.dart';
+import 'package:google_sheets/user_sheets_api.dart';
 import 'user_form_widget.dart';
+import 'main.dart';
 
 class CreateSheetsPage extends StatelessWidget {
   const CreateSheetsPage({Key? key}) : super(key: key);
@@ -9,17 +10,22 @@ class CreateSheetsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: Text('Teste'),
+      title: Text("Google Spread Sheet API"),
       centerTitle: true,
     ),
     body: Container(
       alignment: Alignment.center,
       padding: EdgeInsets.all(32),
-      child: UserFormWidget(
-        onSavedUser: (user) async {
-          await PetsSheetsAPi.insert([user.toJson()]);
-    },
+      child: SingleChildScrollView(
+        child: UserFormWidget(
+          onSavedUser: (user) async {
+            final id = await UserSheetsApi.getRowCount() + 1;
+            final newUser = user.copy(id: id);
+            await UserSheetsApi.insert([newUser.toJson()]);
+          },
+        ),
       ),
+
     ),
   );
   Future insertUsers() async {
@@ -31,6 +37,6 @@ class CreateSheetsPage extends StatelessWidget {
       User(id: 5, name: 'Lisa', email: 'lisa@gmail.com', isBeginner: false),
     ];
     final jsonUsers = users.map((user) => user.toJson()).toList();
-    await PetsSheetsAPi.insert(jsonUsers);
+    await UserSheetsApi.insert(jsonUsers);
   }
 }

@@ -8,6 +8,7 @@ class UserFields {
 
   static List<String> getFields() => [id, name, email, isBeginner];
 }
+
 class User {
   final int? id;
   final String name;
@@ -26,13 +27,14 @@ class User {
     String? name,
     String? email,
     bool? isBeginner,
-}) =>
+  }) =>
       User(
         id: id ?? this.id,
         name: name ?? this.name,
         email: email ?? this.email,
         isBeginner: isBeginner ?? this.isBeginner,
       );
+
   static User fromJson(Map<String, dynamic> json) => User(
     id: jsonDecode(json[UserFields.id]),
     name: json[UserFields.name],

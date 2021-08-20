@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'user.dart';
-import 'buttonwidget.dart';
+import 'button_widget.dart';
 
 class UserFormWidget extends StatefulWidget {
   final User? user;
@@ -21,6 +21,7 @@ class _UserFormWidgetState extends State<UserFormWidget> {
   late TextEditingController controllerName;
   late TextEditingController controllerEmail;
   late bool isBeginner;
+
   @override
   void initState() {
     super.initState();
@@ -35,16 +36,18 @@ class _UserFormWidgetState extends State<UserFormWidget> {
     initUser();
   }
 
-  void initUser(){
+  void initUser() {
     final name = widget.user == null ? '' : widget.user!.name;
     final email = widget.user == null ? '' : widget.user!.email;
     final isBeginner = widget.user == null ? true : widget.user!.isBeginner;
+
     setState(() {
       controllerName = TextEditingController(text: name);
-      controllerEmail= TextEditingController(text: email);
+      controllerEmail = TextEditingController(text: email);
       this.isBeginner = isBeginner;
     });
   }
+
   @override
   Widget build(BuildContext context) => Form(
     key: formKey,
@@ -68,7 +71,8 @@ class _UserFormWidgetState extends State<UserFormWidget> {
       labelText: 'Name',
       border: OutlineInputBorder(),
     ),
-    validator: (value) => value != null && value.isEmpty ? 'Enter Name' : null,
+    validator: (value) =>
+    value != null && value.isEmpty ? 'Enter Name' : null,
   );
 
   Widget buildEmail() => TextFormField(
@@ -77,30 +81,34 @@ class _UserFormWidgetState extends State<UserFormWidget> {
       labelText: 'Email',
       border: OutlineInputBorder(),
     ),
-    validator: (value) => value != null && !value.contains('@') ? 'Enter Email' : null,
+    validator: (value) =>
+    value != null && !value.contains('@') ? 'Enter Email' : null,
   );
 
   Widget buildFlutterBeginner() => SwitchListTile(
-      contentPadding: EdgeInsets.zero,
-      controlAffinity: ListTileControlAffinity.leading,
-      value: isBeginner,
-      title: Text('Is Flutter Beginner?'),
-      onChanged: (value) => setState(() => isBeginner = value),
+    contentPadding: EdgeInsets.zero,
+    controlAffinity: ListTileControlAffinity.leading,
+    value: isBeginner,
+    title: Text('Is Flutter Beginner?'),
+    onChanged: (value) => setState(() => isBeginner = value),
   );
 
   Widget buildSubmit() => ButtonWidget(
-      text: 'Save', onClicked: () {
-        final form = formKey.currentState!;
-        final isValid = form.validate();
+    text: 'Save',
+    onClicked: () {
+      final form = formKey.currentState!;
+      final isValid = form.validate();
 
-        if(isValid) {
-          final user = User(
-            name: controllerName.text,
-            email: controllerEmail.text,
-            isBeginner: isBeginner,
-          );
-          widget.onSavedUser(user);
-        }
-  },
+      if (isValid) {
+        final id = widget.user == null ? null : widget.user!.id;
+        final user = User(
+          id: id,
+          name: controllerName.text,
+          email: controllerEmail.text,
+          isBeginner: isBeginner,
+        );
+        widget.onSavedUser(user);
+      }
+    },
   );
 }

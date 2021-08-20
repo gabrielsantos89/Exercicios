@@ -2,7 +2,7 @@ import 'package:google_sheets/user.dart';
 import 'package:gsheets/gsheets.dart';
 
 class UserSheetsApi {
-  static const _credential = r'''
+  static const _credentials = r'''
   {
   "type": "service_account",
   "project_id": "petsnoop",
@@ -17,18 +17,17 @@ class UserSheetsApi {
 }
   ''';
   static final _spreadsheetId = '1avA4RhsCkgzt09Jerq1jQa0GYcjI2bwTlg1Orc2e8YY';
-  static final _gsheets = GSheets(_credential);
+  static final _gsheets = GSheets(_credentials);
   static Worksheet? _userSheet;
 
-  static Future init() async{
+  static Future init() async {
     try {
       final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
-      _userSheet = await _getWorkSheet(spreadsheet,title: 'Pets');
+      _userSheet = await _getWorkSheet(spreadsheet, title: 'Users');
 
       final firstRow = UserFields.getFields();
       _userSheet!.values.insertRow(1, firstRow);
-    }
-    catch (e) {
+    } catch (e) {
       print('Init Error: $e');
     }
   }
@@ -42,7 +41,6 @@ class UserSheetsApi {
     } catch (e) {
       return spreadsheet.worksheetByTitle(title)!;
     }
-
   }
 
   static Future<int> getRowCount() async {
@@ -59,15 +57,48 @@ class UserSheetsApi {
     return users == null ? <User>[] : users.map(User.fromJson).toList();
   }
 
-  static Future<User?> getById( int id) async {
+  static Future<User?> getById(int id) async {
     if (_userSheet == null) return null;
 
     final json = await _userSheet!.values.map.rowByKey(id, fromColumn: 1);
-    return json == null ? null :  User.fromJson(json);
+    return json == null ? null : User.fromJson(json);
   }
 
   static Future insert(List<Map<String, dynamic>> rowList) async {
-    if(_userSheet == null) return;
+    if (_userSheet == null) return;
+
     _userSheet!.values.map.appendRows(rowList);
+  }
+
+  static Future<bool> update(
+      int id,
+      Map<String, dynamic> user,
+      ) async {
+    if (_userSheet == null) return false;
+
+    return _userSheet!.values.map.insertRowByKey(id, user);
+  }
+
+  static Future<bool> updateCell({
+    required int id,
+    required String key,
+    required dynamic value,
+  }) async {
+    if (_userSheet == null) return false;
+
+    return _userSheet!.values.insertValueByKeys(
+      value,
+      columnKey: key,
+      rowKey: id,
+    );
+  }
+
+  static Future<bool> deleteById(int id) async {
+    if (_userSheet == null) return false;
+
+    final index = await _userSheet!.values.rowIndexOf(id);
+    if (index == -1) return false;
+
+    return _userSheet!.deleteRow(index);
   }
 }

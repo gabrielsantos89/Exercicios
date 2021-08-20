@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 class NavigateUsersWidget extends StatelessWidget {
   final String text;
   final VoidCallback onClickedPrevious;
   final VoidCallback onClickedNext;
+
   const NavigateUsersWidget({
     Key? key,
     required this.text,
@@ -18,10 +20,10 @@ class NavigateUsersWidget extends StatelessWidget {
         iconSize: 48,
         icon: Icon(Icons.navigate_before),
         onPressed: onClickedPrevious,
-          ),
+      ),
       Text(
         text,
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
       ),
       IconButton(
         iconSize: 48,
